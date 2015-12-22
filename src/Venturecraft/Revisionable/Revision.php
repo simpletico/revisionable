@@ -20,6 +20,13 @@ class Revision extends Eloquent
      */
     public $table = 'revisions';
 
+
+    /**
+     * @var array
+     * Lets hold some mappings so we can reference different field/classes names
+     */
+    public $revisionMappings = ['id' => '_id'];
+
     /**
      * @var array
      */
@@ -133,8 +140,17 @@ class Revision extends Eloquent
             $main_model = new $main_model;
 
             try {
-                if (strpos($this->key, '_id')) {
+                // Now use the mappings to see if the saved key contains the string that was specified 
+                // to identify the pk.
+                if (strpos($this->key, $this->revisionMappings['id'])) {
+                    //Keeping the original replacement...
                     $related_model = str_replace('_id', '', $this->key);
+
+                    // Lets now search for the mappings for the related model,
+                    // and substitute the name that the variable contains.
+                    if( in_array($related_model, array_keys($this->revisionMappings)) ) {
+                        $related_model = $this->revisionMappings[$related_model];
+                    }
 
                     // Now we can find out the namespace of of related model
                     if (!method_exists($main_model, $related_model)) {

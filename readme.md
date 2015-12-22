@@ -1,3 +1,7 @@
+This is a forked project, you can find the original at <a href="https://github.com/VentureCraft/revisionable">Venturecraft Revisionable.</a>
+
+The original idea of the fork, was to add ability to create mappings for field names, and class names.
+
 <img src="http://venturecraft.com.au/wp-content/uploads/2015/09/REVISIONABLE.png" style="width: 100%" alt="Revisionable" />
 
 <a href="https://packagist.org/packages/venturecraft/revisionable">
